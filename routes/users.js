@@ -16,7 +16,7 @@ router.get('/dashboard', (req, res) => {
   res.render('dashboard');
 })
 
-router.post("/register", (req, res) => {
+router.post("/signup", (req, res) => {
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
       return res.status(400).json({error: "Email already exists"});
@@ -29,7 +29,7 @@ router.post("/register", (req, res) => {
 
       newUser.save()
         .then(user => {
-          res.redirect('/dashboard');
+          res.redirect('/user/dashboard');
           return res.json(user);
         })
         .catch(err => {

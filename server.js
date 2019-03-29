@@ -1,4 +1,3 @@
-const path = require('path');
 const express = require('express');
 const app = express();
 const http = require('http').Server(app);
@@ -29,14 +28,7 @@ app.get('/messages', (req, res) => {
   Message.find({},(err, messages)=> {
     res.send(messages);
   })
-})
-
-app.get('/messages/:user', (req, res) => {
-  var user = req.params.user
-  Message.find({name: user},(err, messages)=> {
-    res.send(messages);
-  })
-})
+});
 
 app.post('/messages', (req, res) => {
   var message = new Message(req.body);
@@ -46,18 +38,18 @@ app.post('/messages', (req, res) => {
     io.emit('message', req.body);
     res.sendStatus(200);
   })
-})
+});
 
 
 io.on('connection', () =>{
-  console.log('a user is connected')
-})
+  console.log('User Connected');
+});
 
 app.use('/user', UserRoutes);
 
 app.use((req, res) =>{
   res.render('page-not-found');
-})
+});
 
 const PORT = process.env.PORT || 3000;
 http.listen(PORT, () => {
