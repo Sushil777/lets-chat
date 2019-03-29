@@ -4,17 +4,22 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 
 const keys = require('./config/keys');
 const Message = require('./models/Message');
 
 const UserRoutes = require('./routes/users');
 
-mongoose.connect(keys.mongoUri, { useNewUrlParser: true })
-.then(() => console.log("MongoDB Connected"))
-.catch(err => console.log(err));
+// var session = require('express-session');
+// app.use(session({secret: 'mySecret', resave: false, saveUninitialized: false}));
 
+mongoose.connect(keys.mongoUri, { useNewUrlParser: true })
+  .then(() => console.log("MongoDB Connected"))
+  .catch(err => console.log(err));
+
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
@@ -50,16 +55,8 @@ io.on('connection', () =>{
 
 app.use('/user', UserRoutes);
 
-app.use('/dashboard', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'dashboard.html'));
-})
-
-app.use('/signup', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'signup.html'));
-})
-
-app.use('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'login.html'));
+app.use((req, res) =>{
+  res.render('page-not-found');
 })
 
 const PORT = process.env.PORT || 3000;

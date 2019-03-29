@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page not found</title>
+  <link rel="stylesheet" href="../public/css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+    crossorigin="anonymous">
+  <script src="../public/js/jquery/jquery.min.js"></script>
+</head>
+<style>
+  .error-message {
+    margin-top: 5rem;
+  }
+</style>
+<body>
+  <div class="col-sm-12 text-center">
+    <h3 class="error-message">
+      Oops! Page not found
+      <i class="fa fa-exclamation-triangle"></i><br><br>
+      <button class="btn btn-secondary" id="login">Login</button>
+      <button class="btn btn-secondary" id="signup">Signup</button>
+    </h3>
+  </div>
+  <script>
+    $(() => {
+      $("#login").click(() => {
+        window.open('http://localhost:3000/user/login', '_self');
+      });
+      $("#signup").click(() => {
+        window.open('http://localhost:3000/user/signup', '_self');
+      })
+    });
+  </script>
+</body>
+</html>

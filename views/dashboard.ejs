@@ -3,12 +3,18 @@
 <head>
   <title>Dashboard</title>
   <link rel="stylesheet" href="../public/css/bootstrap/bootstrap.min.css">
-  <script src="../public/js/jquery/jquery.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <script src="../public/js/jquery/jquery.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
 </head>
+<style>
+.list-group-item:hover {
+  box-shadow: 0 2px 3px #ccc;
+  cursor: pointer;
+}
+</style>
 <body>
-  <div class="col-sm-12 text-center mt-3">
+  <div class="col-sm-5 offset-sm-5 mt-3">
     <h4>Lets Chat</h4>
   </div>
   <div class="col-sm-5 offset-sm-3 mt-4">
@@ -21,7 +27,7 @@
       <textarea id="message" class="form-control" placeholder="Your Message Here..."></textarea>
     </div>
     <button id="send" class="btn btn-secondary">
-      <i class="fa fa-comments mr-2"></i>Send Message
+      <i class="fa fa-paper-plane mr-2"></i>Send Message
     </button>
     <div id="messages" class="list-group mt-4"></div>
   </div>

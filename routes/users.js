@@ -3,6 +3,19 @@ const router = express.Router();
 
 const User = require('../models/User');
 
+router.get('/login', (req, res) => {
+  res.render('login');
+})
+
+router.get('/signup', (req, res) => {
+  res.render('signup');
+})
+
+router.get('/dashboard', (req, res) => {
+  // const name = req.session.userName;
+  res.render('dashboard');
+})
+
 router.post("/register", (req, res) => {
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
@@ -32,7 +45,8 @@ router.post("/login", (req, res) => {
   User.findOne({ email }).then(user => {
     if (user) {
       if (password === user.password) {
-        res.redirect('/dashboard');
+        // req.session.userName = user.name;
+        res.redirect('/user/dashboard');
         return res.json(user);
       } else {
         return res.status(404).json({error: "incorrect password"});
